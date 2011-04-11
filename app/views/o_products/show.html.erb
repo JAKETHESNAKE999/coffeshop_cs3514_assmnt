@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <%= image_tag @o_product.image_url %>
+</p>
+
+<p>
+  <b>Title:</b>
+  <%= @o_product.title %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @o_product.description %>
+</p>
+
+<p>
+  <b>Image url:</b>
+  <%= @o_product.image_url %>
+</p>
+
+<p>
+  <b>Price:</b>
+  <%= @o_product.price %>
+</p>
+
+<%= link_to 'Edit', edit_o_product_path(@o_product) %> |
+<%= link_to 'Back', o_products_path %>
