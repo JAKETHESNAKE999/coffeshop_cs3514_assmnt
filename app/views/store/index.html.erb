@@ -1,0 +1,43 @@
+<h2><font color=red><%= flash[:notice] %></font></h2>
+<TABLE cellspacing=0 cellpadding=0 border=0 align=center>
+<TR><TD valign=top align=center>
+<h1>Listing products</h1>
+<p>
+<table cellspacing=5 cellpadding=0 border=1>
+<% @products.each do |o_product| %>
+  <tr valign=top>
+    <td><%= image_tag o_product.image_url, :height => 60, :width => 60 %></td>
+    <td width=250 ><b><%= o_product.title %></b><p><%= o_product.description %></p></td> 
+    <td><b><%= number_to_currency(o_product.price, :unit => "&pound;") %></b>
+      <%= button_to "Add to\nCart" , :action => :add_to_cart, :id => o_product.id %>
+      <% form_tag :url => { :action => :add_to_cart, :id => o_product.id }, :remote => true do %>
+        <%= submit_tag "Add to\nCart" %>
+      <% end %>
+</td>   
+  </tr>
+<% end %>
+</table>
+</p>
+</TD><TD width=250 valign=top align=center>
+<h1>Your cart</h1>
+<p>
+<table cellspacing=5 bgcolor=lightyellow border=0>
+  <% @cart.items.each do |item| %>
+  <tr>
+    <td><%= item.title %></td>
+    <td>&times;</td>
+    <td width=25 align=left><%= item.quantity %></td>
+    <td align=right><%= number_to_currency(item.price, :unit => "&pound;") %></td>
+  <% end %>
+  
+  <tr>
+    <td colspan="3" align=right>Total</td>
+    <td><%= number_to_currency(@cart.total_price, :unit => "&pound;") %></td>
+  </tr>
+</table>
+</p>
+<%= button_to "CHECKOUT", :action => :index %>
+<%= button_to "Empty cart" , :action => :empty_cart %>
+</TD></TR></TABLE>
+
+<%= debug(params) if Rails.env.development? %>

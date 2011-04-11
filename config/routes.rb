@@ -1,5 +1,13 @@
 Coffeeshop::Application.routes.draw do
+  #get "/store/index"
+  #get "/store/add_to_cart"
+  get "store/empty_cart"
+
   resources :o_products
+  
+  match '/store', :to => 'store#index'
+  match '/store/add_to_cart', :to => 'store#add_to_cart'
+  match '/store/empty_cart', :to => 'store#empty_cart'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

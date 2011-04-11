@@ -1,0 +1,21 @@
+<h1>Your cart</h1>
+<p>
+<table cellspacing=5>
+  <% @cart.items.each do |item| %>
+  <tr>
+    <td><%= item.title %></td>
+    <td>&times;</td>
+    <td width=25 align=left><%= item.quantity %></td>
+    <td><%= number_to_currency(item.price, :unit => "&pound;") %></td>
+  <% end %>
+  
+  <tr>
+    <td colspan="3" align=right>Total</td>
+    <td><%= number_to_currency(@cart.total_price, :unit => "&pound;") %></td>
+  </tr>
+</table>
+</p>
+
+<%= button_to "Empty cart" , :action => :empty_cart %>
+<br><%= link_to "Back" , :action => :index %></br>
+
