@@ -1,8 +1,9 @@
 Coffeeshop::Application.routes.draw do
   #get "/store/index"
-  #get "/store/add_to_cart"
-  get "store/empty_cart"
-
+  get "/store/add_to_cart"
+  get "/store/empty_cart"
+  post "/store/add_to_cart"
+  
   resources :o_products
   
   match '/store', :to => 'store#index'

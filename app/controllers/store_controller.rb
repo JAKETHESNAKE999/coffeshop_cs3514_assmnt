@@ -1,4 +1,6 @@
 class StoreController < ApplicationController
+  respond_to :html, :js
+  
   def index
     @products = OProduct.find_products_for_sale
     @cart = find_cart
@@ -14,7 +16,14 @@ class StoreController < ApplicationController
     else
       @cart = find_cart
       @cart.add_product(product)
-      redirect_to :action => :index
+      respond_to do |format|
+        format.html { 
+          flash[:notice] = "Using html"
+          redirect_to :action => :index 
+          }
+        format.js
+      end
+      
     end
   end
   
